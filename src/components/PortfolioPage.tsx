@@ -25,9 +25,11 @@ export default function PortfolioPage() {
   const mouseY = useMotionValue(0);
 
   // Smooth mouse spring
-  const springConfig = { damping: 20, stiffness: 400, mass: 0.5 };
+  const springConfig = { damping: 30, stiffness: 200, mass: 0.5 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
+
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     // Initialize Lenis Smooth Scroll
@@ -37,7 +39,9 @@ export default function PortfolioPage() {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
+      lerp: 0.1,
     });
+    lenisRef.current = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -80,6 +84,16 @@ export default function PortfolioPage() {
       setCursorSize(20);
       setIsHovering(false);
   };
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(id, {
+        offset: 0,
+        lerp: 0.05,
+        duration: 1.5,
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-sans cursor-none selection:bg-white selection:text-black overflow-x-hidden">
@@ -110,10 +124,10 @@ export default function PortfolioPage() {
       <header className="fixed top-0 left-0 w-full z-40 px-8 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white">
         <div className="font-bold text-lg uppercase tracking-tight">Full Stack Developer</div>
          <nav className="hidden md:flex gap-12 font-medium">
-             <a href="#about" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">About</a>
-             <a href="#work" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Work</a>
-             <a href="#skills" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Skills</a>
-             <a href="#contact" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Contact</a>
+             <a href="#about" onClick={(e) => handleNavClick(e, "#about")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">About</a>
+             <a href="#work" onClick={(e) => handleNavClick(e, "#work")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Work</a>
+             <a href="#skills" onClick={(e) => handleNavClick(e, "#skills")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Skills</a>
+             <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Contact</a>
          </nav>
       </header>
 
