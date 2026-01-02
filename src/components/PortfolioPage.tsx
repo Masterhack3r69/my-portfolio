@@ -187,7 +187,7 @@ export default function PortfolioPage() {
       {/* Selected Works (Big Three) */}
       <section id="work" className="min-h-screen bg-black text-white py-24 px-12 dot-grid text-white/5">
           <div className="flex justify-between items-end mb-12 text-white">
-               <h3 className="text-6xl font-black uppercase">The Big Three</h3>
+               <h3 className="text-6xl font-black uppercase">PROJECTS</h3>
                <span className="font-mono text-sm">(0{projects.length})</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -218,9 +218,9 @@ export default function PortfolioPage() {
                               ))}
                           </div>
                           <div className="mt-auto flex gap-4">
-                              <a href={project.liveDemoUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors flex items-center gap-2">
+                              {/* <a href={project.liveDemoUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors flex items-center gap-2">
                                   Live Demo <ExternalLink size={14} />
-                              </a>
+                              </a> */}
                               <a href={project.githubUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors flex items-center gap-2">
                                   GitHub <Github size={14} />
                               </a>
@@ -229,6 +229,27 @@ export default function PortfolioPage() {
                   </motion.div>
               ))}
           </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-20 flex justify-center"
+          >
+              <a 
+                href={contactInfo.github} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className="group relative px-12 py-4 border border-white/20 hover:border-white transition-colors duration-500 flex items-center gap-3 overflow-hidden"
+              >
+                  <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+                  <span className="relative z-10 text-sm font-bold uppercase tracking-[0.2em] group-hover:text-black transition-colors duration-500">View More on GitHub</span>
+                  <ArrowUpRight className="relative z-10 group-hover:text-black group-hover:rotate-45 transition-all duration-500" size={18} />
+              </a>
+          </motion.div>
       </section>
 
       {/* Deep Dive (Case Study) */}
