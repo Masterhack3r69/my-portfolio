@@ -83,7 +83,7 @@ export const skills: SkillCategory[] = [
 ];
 
 export const contactInfo: ContactInfo = {
-  headline: "Full-stack developer focused on building scalable, user-centric web applications.",
+  headline: "I’m a Full Stack Developer who enjoys creating modern web applications. I work on both the front end and back end, bringing ideas to life through clean code and thoughtful design. I’m passionate about learning new technologies and building products that people actually enjoy using.",
   email: "hello@example.com",
   linkedIn: "https://linkedin.com/in/username",
   github: "https://github.com/username",

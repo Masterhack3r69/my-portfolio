@@ -14,8 +14,8 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | [Your Name]",
-  description: "A digital portfolio showing different dimensions of work.",
+  title: "John Deckson | Full Stack Developer",
+  description: "I’m a Full Stack Developer who enjoys creating modern web applications. I work on both the front end and back end, bringing ideas to life through clean code and thoughtful design.",
 };
 
 export default function RootLayout({

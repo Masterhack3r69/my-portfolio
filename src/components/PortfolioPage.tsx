@@ -5,6 +5,18 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motio
 import Lenis from "lenis";
 import { cn } from "@/lib/utils";
 import { projects, caseStudy, skills, contactInfo } from "@/lib/data";
+import { 
+  ExternalLink, 
+  Github, 
+  Mail, 
+  Linkedin, 
+  FileText, 
+  Code2, 
+  Layers, 
+  Terminal, 
+  Globe,
+  ArrowUpRight 
+} from "lucide-react";
 
 export default function PortfolioPage() {
   const [cursorSize, setCursorSize] = useState(20);
@@ -80,16 +92,18 @@ export default function PortfolioPage() {
       </motion.div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-40 px-12 py-8 flex justify-between items-center mix-blend-difference text-white">
-        <div className="font-bold text-lg uppercase tracking-tight">Kinetic</div>
-         <nav className="flex gap-12 font-medium">
-             <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none">Work</span>
-             <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none">Play</span>
+      <header className="fixed top-0 left-0 w-full z-40 px-8 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white">
+        <div className="font-bold text-lg uppercase tracking-tight">Full Stack Developer</div>
+         <nav className="hidden md:flex gap-12 font-medium">
+             <a href="#about" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">About</a>
+             <a href="#work" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Work</a>
+             <a href="#skills" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Skills</a>
+             <a href="#contact" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Contact</a>
          </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="h-screen flex flex-col md:flex-row justify-center items-center px-8 md:px-24 relative overflow-hidden dot-grid text-white/5">
+      <section id="home" className="h-screen flex flex-col md:flex-row justify-center items-center px-8 md:px-24 relative overflow-hidden dot-grid text-white/5">
           <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none text-white">
              <div className="w-[80vw] h-[80vw] border border-white rounded-full animate-spin-slow" />
           </div>
@@ -100,8 +114,8 @@ export default function PortfolioPage() {
                  onMouseEnter={handleMouseEnter}
                  onMouseLeave={handleMouseLeave}
               >
-                  Move <br />
-                  <span className="outline-text text-transparent stroke-white" style={{ WebkitTextStroke: "2px white" }}>Fast</span>
+                  John <br />
+                  <span className="outline-text text-transparent stroke-white" style={{ WebkitTextStroke: "2px white" }}>Deckson</span>
               </motion.h1>
 
               <motion.div 
@@ -123,16 +137,52 @@ export default function PortfolioPage() {
       </section>
 
       {/* About Section */}
-      <section className="min-h-[50vh] flex items-center justify-center px-8 py-24 bg-white text-black dot-grid text-black/5">
-         <div className="max-w-4xl text-center text-black">
-             <p className="text-xl md:text-3xl font-light leading-relaxed">
-                {contactInfo.headline}
-             </p>
+      <section id="about" className="min-h-screen relative flex flex-col md:flex-row items-center justify-center px-8 md:px-24 py-24 bg-white overflow-hidden gap-16">
+         {/* Dot grid isolated for contrast */}
+         <div className="absolute inset-0 dot-grid text-black/5 pointer-events-none" />
+         
+         <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-16 w-full text-black">
+             <div className="w-full md:w-1/3 relative">
+                 <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="absolute -left-8 -top-8 text-neutral-200 font-mono text-sm hidden md:block"
+                 >
+                    (01) / BIOGRAPHY
+                 </motion.div>
+                 <motion.h2 
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="text-[10vw] md:text-[6vw] font-black uppercase leading-[0.9]"
+                 >
+                    About <br /> <span className="text-neutral-400 text-outline" style={{ WebkitTextStroke: "1.5px #a3a3a3" }}>Me</span>
+                 </motion.h2>
+             </div>
+             <div className="w-full md:w-2/3 max-w-2xl">
+                 <motion.p 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="text-2xl md:text-4xl font-light leading-relaxed tracking-tight"
+                 >
+                    {contactInfo.headline}
+                 </motion.p>
+                 <motion.div 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="h-[1px] bg-black/10 mt-12"
+                 />
+             </div>
          </div>
       </section>
 
       {/* Selected Works (Big Three) */}
-      <section className="min-h-screen bg-black text-white py-24 px-12 dot-grid text-white/5">
+      <section id="work" className="min-h-screen bg-black text-white py-24 px-12 dot-grid text-white/5">
           <div className="flex justify-between items-end mb-12 text-white">
                <h3 className="text-6xl font-black uppercase">The Big Three</h3>
                <span className="font-mono text-sm">(0{projects.length})</span>
@@ -165,8 +215,12 @@ export default function PortfolioPage() {
                               ))}
                           </div>
                           <div className="mt-auto flex gap-4">
-                              <a href={project.liveDemoUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors">Live Demo</a>
-                              <a href={project.githubUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors">GitHub</a>
+                              <a href={project.liveDemoUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors flex items-center gap-2">
+                                  Live Demo <ExternalLink size={14} />
+                              </a>
+                              <a href={project.githubUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors flex items-center gap-2">
+                                  GitHub <Github size={14} />
+                              </a>
                           </div>
                       </div>
                   </motion.div>
@@ -209,24 +263,35 @@ export default function PortfolioPage() {
       </section>
 
       {/* Technical Skills */}
-      <section className="bg-black text-white py-24 px-8 md:px-24 dot-grid text-white/5">
+      <section id="skills" className="bg-black text-white py-24 px-8 md:px-24 dot-grid text-white/5">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-white/20 pt-12 text-white">
-              {skills.map((category, idx) => (
-                  <motion.div 
-                    key={category.category}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: idx * 0.1 }}
-                  >
-                      <h4 className="text-xs font-mono uppercase text-neutral-500 mb-6">{category.category}</h4>
-                      <ul className="space-y-2">
-                          {category.skills.map(skill => (
-                              <li key={skill} className="text-2xl font-bold uppercase hover:text-neutral-400 transition-colors cursor-default">{skill}</li>
-                          ))}
-                      </ul>
-                  </motion.div>
-              ))}
+                  {skills.map((category, idx) => {
+                      const Icon = {
+                          "Languages": Code2,
+                          "Frameworks/Libraries": Layers,
+                          "Tools/Backend": Terminal,
+                          "Architecture/Cloud": Globe
+                      }[category.category] || Code2;
+
+                      return (
+                        <motion.div 
+                          key={category.category}
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: idx * 0.1 }}
+                        >
+                            <h4 className="text-xs font-mono uppercase text-neutral-500 mb-6 flex items-center gap-2">
+                                <Icon size={14} /> {category.category}
+                            </h4>
+                            <ul className="space-y-2">
+                                {category.skills.map(skill => (
+                                    <li key={skill} className="text-2xl font-bold uppercase hover:text-neutral-400 transition-colors cursor-default">{skill}</li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                      );
+                  })}
           </div>
       </section>
 
@@ -247,22 +312,30 @@ export default function PortfolioPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-8 relative overflow-hidden text-center dot-grid text-white/5">
+      <section id="contact" className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-8 relative overflow-hidden text-center dot-grid text-white/5">
            <div className="absolute inset-0 bg-neutral-900/50" />
            
            <div className="relative z-10 text-white">
                 <span className="text-sm font-mono uppercase tracking-widest mb-4 block animate-pulse">Available for work</span>
                 <h2 
-                  className="text-[12vw] font-black uppercase leading-[0.8] mb-8 cursor-pointer hover:text-outline hover:text-transparent transition-colors duration-300"
+                  className="text-[12vw] font-black uppercase leading-[0.8] mb-8 cursor-pointer hover:text-outline hover:text-transparent transition-colors duration-300 flex items-center gap-4 justify-center"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                    <a href={`mailto:${contactInfo.email}`}>Say Hello</a>
+                    <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-4">
+                        Say Hello <ArrowUpRight className="w-[8vw] h-[8vw]" />
+                    </a>
                 </h2>
                 <div className="flex gap-8 justify-center mt-12 flex-wrap">
-                    <a href={contactInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-lg uppercase tracking-widest hover:underline underline-offset-4" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>LinkedIn</a>
-                    <a href={contactInfo.github} target="_blank" rel="noopener noreferrer" className="text-lg uppercase tracking-widest hover:underline underline-offset-4" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>GitHub</a>
-                    <a href={contactInfo.resumeUrl} download className="text-lg uppercase tracking-widest hover:underline underline-offset-4" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Resume PDF</a>
+                    <a href={contactInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-lg uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <Linkedin size={18} /> LinkedIn
+                    </a>
+                    <a href={contactInfo.github} target="_blank" rel="noopener noreferrer" className="text-lg uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <Github size={18} /> GitHub
+                    </a>
+                    <a href={contactInfo.resumeUrl} download className="text-lg uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <FileText size={18} /> Resume PDF
+                    </a>
                 </div>
            </div>
       </section>
