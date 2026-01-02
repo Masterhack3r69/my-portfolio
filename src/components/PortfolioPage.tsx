@@ -45,14 +45,29 @@ export default function PortfolioPage() {
     }
     requestAnimationFrame(raf);
 
-    const moveCursor = (e: MouseEvent) => {
-      mouseX.set(e.clientX - cursorSize / 2);
-      mouseY.set(e.clientY - cursorSize / 2);
+    const moveCursor = (e: MouseEvent | TouchEvent) => {
+      let clientX, clientY;
+      
+      if (e instanceof MouseEvent) {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      } else {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      }
+
+      mouseX.set(clientX - cursorSize / 2);
+      mouseY.set(clientY - cursorSize / 2);
     };
 
     window.addEventListener("mousemove", moveCursor);
+    window.addEventListener("touchstart", moveCursor as any);
+    window.addEventListener("touchmove", moveCursor as any);
+    
     return () => {
       window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("touchstart", moveCursor as any);
+      window.removeEventListener("touchmove", moveCursor as any);
       lenis.destroy();
     };
   }, [cursorSize, mouseX, mouseY]);
