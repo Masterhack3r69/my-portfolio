@@ -92,19 +92,7 @@ export default function PortfolioPage() {
           width: cursorSize,
           height: cursorSize,
         }}
-      >
-        <AnimatePresence>
-            {isHovering && (
-                <motion.span 
-                    initial={{ opacity: 0, scale: 0 }} 
-                    animate={{ opacity: 1, scale: 1 }} 
-                    exit={{ opacity: 0, scale: 0 }}
-                >
-                    View
-                </motion.span>
-            )}
-        </AnimatePresence>
-      </motion.div>
+      />
 
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-40 px-8 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white">
@@ -296,9 +284,14 @@ export default function PortfolioPage() {
                           viewport={{ once: true }}
                           transition={{ duration: 0.8, delay: idx * 0.1 }}
                         >
-                            <h4 className="text-xs font-mono uppercase text-neutral-500 mb-6 flex items-center gap-2">
+                            <h4 className="text-xs font-mono uppercase text-neutral-500 mb-2 flex items-center gap-2">
                                 <Icon size={14} /> {category.category}
                             </h4>
+                            {category.description && (
+                                <p className="text-xs text-neutral-400 mb-6 leading-relaxed max-w-[250px]">
+                                    {category.description}
+                                </p>
+                            )}
                             <ul className="space-y-2">
                                 {category.skills.map(skill => (
                                     <li key={skill} className="text-2xl font-bold uppercase hover:text-neutral-400 transition-colors cursor-default">{skill}</li>

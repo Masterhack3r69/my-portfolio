@@ -16,6 +16,7 @@ export interface CaseStudy {
 
 export interface SkillCategory {
   category: string;
+  description?: string;
   skills: string[];
 }
 
@@ -66,18 +67,22 @@ export const caseStudy: CaseStudy = {
 export const skills: SkillCategory[] = [
   {
     category: "Languages",
+    description: "The core syntax and logic that power my applications.",
     skills: ["JavaScript (ES6+)", "TypeScript", "Python", "Zig", "HTML5", "CSS3"],
   },
   {
     category: "Frameworks/Libraries",
+    description: "Modern tools used to build robust and scalable front-end and back-end systems.",
     skills: ["React", "Next.js", "Tailwind CSS", "Express"],
   },
   {
     category: "Tools/Backend",
+    description: "DevOps and storage solutions for efficient deployment and data management.",
     skills: ["Git", "Docker", "Firebase", "PostgreSQL", "Node.js", "MySQL", "MongoDB"],
   },
   {
     category: "Architecture/Cloud",
+    description: "Systems design and cloud integration for high availability.",
     skills: ["REST", "GraphQL", "AWS", "GCP"],
   },
 ];
