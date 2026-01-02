@@ -36,3 +36,10 @@ body {
   -webkit-text-stroke: 1px currentColor;
   color: transparent;
 }
+
+@layer utilities {
+  .dot-grid {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+}

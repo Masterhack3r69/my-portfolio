@@ -55,7 +55,7 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans cursor-none selection:bg-black selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white font-sans cursor-none selection:bg-white selection:text-black overflow-x-hidden">
       {/* Custom Cursor */}
       <motion.div
         className="fixed top-0 left-0 rounded-full pointer-events-none z-50 mix-blend-difference bg-white flex items-center justify-center text-black font-bold text-xs uppercase"
@@ -89,24 +89,42 @@ export default function PortfolioPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="h-screen flex flex-col justify-center items-center px-8 relative">
-          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-             <div className="w-[80vw] h-[80vw] border border-black rounded-full animate-spin-slow" />
+      <section className="h-screen flex flex-col md:flex-row justify-center items-center px-8 md:px-24 relative overflow-hidden dot-grid text-white/5">
+          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none text-white">
+             <div className="w-[80vw] h-[80vw] border border-white rounded-full animate-spin-slow" />
           </div>
 
-          <motion.h1 
-             className="text-[12vw] font-black uppercase leading-[0.8] text-center mix-blend-difference text-white z-10"
-             onMouseEnter={handleMouseEnter}
-             onMouseLeave={handleMouseLeave}
-          >
-              Move <br />
-              <span className="outline-text text-transparent stroke-white" style={{ WebkitTextStroke: "2px white" }}>Fast</span>
-          </motion.h1>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 z-10 w-full max-w-7xl text-white">
+              <motion.h1 
+                 className="text-[12vw] md:text-[8vw] font-black uppercase leading-[0.8] text-center md:text-left mix-blend-difference"
+                 onMouseEnter={handleMouseEnter}
+                 onMouseLeave={handleMouseLeave}
+              >
+                  Move <br />
+                  <span className="outline-text text-transparent stroke-white" style={{ WebkitTextStroke: "2px white" }}>Fast</span>
+              </motion.h1>
+
+              <motion.div 
+                className="relative w-72 h-72 md:w-[450px] md:h-[450px] shrink-0 overflow-hidden border border-white/20"
+                initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.05 }}
+              >
+                  <motion.img 
+                    src="/profile-hero.png" 
+                    alt="Profile" 
+                    className="w-full h-full object-cover transition-all duration-500"
+                    onMouseEnter={() => setCursorSize(150)}
+                    onMouseLeave={() => setCursorSize(20)}
+                  />
+              </motion.div>
+          </div>
       </section>
 
       {/* About Section */}
-      <section className="min-h-[50vh] flex items-center justify-center px-8 py-24 bg-black text-white">
-         <div className="max-w-4xl text-center">
+      <section className="min-h-[50vh] flex items-center justify-center px-8 py-24 bg-white text-black dot-grid text-black/5">
+         <div className="max-w-4xl text-center text-black">
              <p className="text-xl md:text-3xl font-light leading-relaxed">
                 {contactInfo.headline}
              </p>
@@ -114,8 +132,8 @@ export default function PortfolioPage() {
       </section>
 
       {/* Selected Works (Big Three) */}
-      <section className="min-h-screen bg-black text-white py-24 px-12">
-          <div className="flex justify-between items-end mb-12">
+      <section className="min-h-screen bg-black text-white py-24 px-12 dot-grid text-white/5">
+          <div className="flex justify-between items-end mb-12 text-white">
                <h3 className="text-6xl font-black uppercase">The Big Three</h3>
                <span className="font-mono text-sm">(0{projects.length})</span>
           </div>
@@ -127,7 +145,7 @@ export default function PortfolioPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="border border-white/20 relative group overflow-hidden flex flex-col"
+                    className="border border-white/20 relative group overflow-hidden flex flex-col bg-black/50 backdrop-blur-sm"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -138,7 +156,7 @@ export default function PortfolioPage() {
                           className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700 ease-in-out grayscale group-hover:grayscale-0"
                         />
                       </div>
-                      <div className="p-8 flex flex-col flex-grow">
+                      <div className="p-8 flex flex-col flex-grow text-white">
                           <h3 className="text-3xl font-bold uppercase mb-2">{project.title}</h3>
                           <p className="text-sm text-neutral-400 mb-4">{project.description}</p>
                           <div className="flex flex-wrap gap-2 mb-6">
@@ -157,8 +175,8 @@ export default function PortfolioPage() {
       </section>
 
       {/* Deep Dive (Case Study) */}
-      <section className="min-h-screen bg-white text-black py-24 px-8 md:px-24 flex items-center">
-          <div className="max-w-5xl mx-auto">
+      <section className="min-h-screen bg-white text-black py-24 px-8 md:px-24 flex items-center dot-grid text-black/5">
+          <div className="max-w-5xl mx-auto text-black">
               <motion.h3 
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -175,7 +193,7 @@ export default function PortfolioPage() {
                       { label: "The Solution", content: caseStudy.solution, highlight: true }
                   ].map((item, i) => (
                       <motion.div 
-                        key={item.label}
+                        key={item.label} 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -191,8 +209,8 @@ export default function PortfolioPage() {
       </section>
 
       {/* Technical Skills */}
-      <section className="bg-black text-white py-24 px-8 md:px-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-white/20 pt-12">
+      <section className="bg-black text-white py-24 px-8 md:px-24 dot-grid text-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-white/20 pt-12 text-white">
               {skills.map((category, idx) => (
                   <motion.div 
                     key={category.category}
@@ -213,13 +231,13 @@ export default function PortfolioPage() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-white text-black py-24 border-t border-b border-black">
+      <section className="bg-white text-black py-24 border-t border-b border-black overflow-hidden dot-grid text-black/5">
           <div className="overflow-hidden whitespace-nowrap">
               <motion.div 
                  initial={{ x: 0 }}
                  animate={{ x: "-50%" }}
                  transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
-                 className="flex gap-24 text-[8vw] font-black uppercase"
+                 className="flex gap-24 text-[8vw] font-black uppercase text-black"
               >
                   {["Creative Direction", "Web Development", "Brand Identity", "Motion Design", "Creative Direction", "Web Development", "Brand Identity", "Motion Design"].map((service, i) => (
                       <span key={i} className="shrink-0">{service}</span>
@@ -229,10 +247,10 @@ export default function PortfolioPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-8 relative overflow-hidden text-center">
+      <section className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-8 relative overflow-hidden text-center dot-grid text-white/5">
            <div className="absolute inset-0 bg-neutral-900/50" />
            
-           <div className="relative z-10">
+           <div className="relative z-10 text-white">
                 <span className="text-sm font-mono uppercase tracking-widest mb-4 block animate-pulse">Available for work</span>
                 <h2 
                   className="text-[12vw] font-black uppercase leading-[0.8] mb-8 cursor-pointer hover:text-outline hover:text-transparent transition-colors duration-300"
@@ -250,8 +268,8 @@ export default function PortfolioPage() {
       </section>
 
       {/* Footer */}
-      <footer className="h-[50vh] flex items-center justify-center bg-white text-black" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <h2 className="text-[8vw] font-black uppercase text-center leading-none">
+      <footer className="h-[50vh] flex items-center justify-center bg-white text-black dot-grid text-black/5" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <h2 className="text-[8vw] font-black uppercase text-center leading-none text-black">
               Make it <br/> happen
           </h2>
       </footer>
