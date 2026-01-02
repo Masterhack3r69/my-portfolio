@@ -1,9 +1,9 @@
-import KineticVariant from "@/components/variants/kinetic/KineticVariant";
+import PortfolioPage from "@/components/PortfolioPage";
 
 export default function Home() {
   return (
     <main>
-      <KineticVariant />
+      <PortfolioPage />
     </main>
   );
 }

@@ -6,7 +6,7 @@ import Lenis from "lenis";
 import { cn } from "@/lib/utils";
 import { projects, caseStudy, skills, contactInfo } from "@/lib/data";
 
-export default function KineticVariant() {
+export default function PortfolioPage() {
   const [cursorSize, setCursorSize] = useState(20);
   const [isHovering, setIsHovering] = useState(false);
   const mouseX = useMotionValue(0);
@@ -120,9 +120,13 @@ export default function KineticVariant() {
                <span className="font-mono text-sm">(0{projects.length})</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {projects.map((project) => (
-                  <div 
+              {projects.map((project, i) => (
+                  <motion.div 
                     key={project.id} 
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     className="border border-white/20 relative group overflow-hidden flex flex-col"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
@@ -147,7 +151,7 @@ export default function KineticVariant() {
                               <a href={project.githubUrl} className="text-sm uppercase tracking-tighter border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors">GitHub</a>
                           </div>
                       </div>
-                  </div>
+                  </motion.div>
               ))}
           </div>
       </section>
@@ -155,20 +159,33 @@ export default function KineticVariant() {
       {/* Deep Dive (Case Study) */}
       <section className="min-h-screen bg-white text-black py-24 px-8 md:px-24 flex items-center">
           <div className="max-w-5xl mx-auto">
-              <h3 className="text-[8vw] font-black uppercase leading-[0.8] mb-12">Deep <br/> Dive</h3>
+              <motion.h3 
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-[8vw] font-black uppercase leading-[0.8] mb-12"
+              >
+                  Deep <br/> Dive
+              </motion.h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                  <div className="space-y-4">
-                      <span className="text-xs font-mono uppercase text-neutral-500">The Goal</span>
-                      <p className="text-lg leading-relaxed">{caseStudy.goal}</p>
-                  </div>
-                  <div className="space-y-4">
-                      <span className="text-xs font-mono uppercase text-neutral-500">The Challenge</span>
-                      <p className="text-lg leading-relaxed">{caseStudy.challenge}</p>
-                  </div>
-                  <div className="space-y-4">
-                      <span className="text-xs font-mono uppercase text-neutral-500">The Solution</span>
-                      <p className="text-lg leading-relaxed font-bold italic">{caseStudy.solution}</p>
-                  </div>
+                  {[
+                      { label: "The Goal", content: caseStudy.goal },
+                      { label: "The Challenge", content: caseStudy.challenge },
+                      { label: "The Solution", content: caseStudy.solution, highlight: true }
+                  ].map((item, i) => (
+                      <motion.div 
+                        key={item.label}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                        className="space-y-4"
+                      >
+                          <span className="text-xs font-mono uppercase text-neutral-500">{item.label}</span>
+                          <p className={cn("text-lg leading-relaxed", item.highlight && "font-bold italic")}>{item.content}</p>
+                      </motion.div>
+                  ))}
               </div>
           </div>
       </section>
@@ -176,15 +193,21 @@ export default function KineticVariant() {
       {/* Technical Skills */}
       <section className="bg-black text-white py-24 px-8 md:px-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-white/20 pt-12">
-              {skills.map((category) => (
-                  <div key={category.category}>
+              {skills.map((category, idx) => (
+                  <motion.div 
+                    key={category.category}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: idx * 0.1 }}
+                  >
                       <h4 className="text-xs font-mono uppercase text-neutral-500 mb-6">{category.category}</h4>
                       <ul className="space-y-2">
                           {category.skills.map(skill => (
                               <li key={skill} className="text-2xl font-bold uppercase hover:text-neutral-400 transition-colors cursor-default">{skill}</li>
                           ))}
                       </ul>
-                  </div>
+                  </motion.div>
               ))}
           </div>
       </section>
