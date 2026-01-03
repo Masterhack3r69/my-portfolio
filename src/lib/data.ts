@@ -28,6 +28,22 @@ export interface ContactInfo {
   resumeUrl: string;
 }
 
+export interface Testimonial {
+  id: string;
+  name: string;
+  message: string;
+  image?: string;
+}
+
+export interface Experience {
+  id: string;
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  skills: string[];
+}
+
 export const projects: Project[] = [
   {
     id: "quiz-ai",
@@ -44,7 +60,7 @@ export const projects: Project[] = [
     description: "A comprehensive Point of Sale system designed for retail businesses with multiple branches, featuring real-time inventory tracking, offline capability, and role-based access control.",
     techStack: ["React", "Node.js", "Express", "PostgreSQL", "Prisma", "Zustand", "IDB"],
     liveDemoUrl: "",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Masterhack3r69/Multi-Branch-POS-System",
     image: "/pos-record.gif",
   },
   {
@@ -59,21 +75,21 @@ export const projects: Project[] = [
 ];
 
 export const caseStudy: CaseStudy = {
-  goal: "To create an AI platform that instantly turns educational materials like PDFs and videos into high-quality, randomized quizzes.",
-  challenge: "Reducing the heavy workload of writing and grading questions for teachers, while making sure quizzes are secure and easy for students to access.",
-  solution: "Built an AI system using Next.js and MongoDB to automatically generate questions and grade them. Included anti-cheating features and a simple code-based login for students.",
+  goal: "To create an AI platform that instantly turns educational materials like PDFs and videos into high-quality, randomized quizzes. Enable educators to focus on teaching rather than assessment creation.",
+  challenge: "Building a system that could reliably extract concepts from diverse content types, generate pedagogically sound questions, prevent cheating, and scale across multiple institutions while maintaining data security and quick response times.",
+  solution: "Architected a multi-agent AI system using Next.js 16 and MongoDB with intelligent question verification. Implemented role-based access control, real-time grading with anti-cheat detection, and optimized the AI pipeline to reduce latency from 45s to under 3s per quiz.",
 };
 
 export const skills: SkillCategory[] = [
   {
     category: "Languages",
     description: "The core syntax and logic that power my applications.",
-    skills: ["JavaScript (ES6+)", "TypeScript", "Python", "Zig", "HTML5", "CSS3"],
+    skills: ["JavaScript (ES6+)", "TypeScript", "Python", "GDScript", "Zig", "HTML5", "CSS3"],
   },
   {
     category: "Frameworks/Libraries",
     description: "Modern tools used to build robust and scalable front-end and back-end systems.",
-    skills: ["React", "Next.js", "Tailwind CSS", "Express"],
+    skills: ["React", "Next.js", "Tailwind CSS", "Express", "Godot"],
   },
   {
     category: "Tools/Backend",
@@ -89,8 +105,52 @@ export const skills: SkillCategory[] = [
 
 export const contactInfo: ContactInfo = {
   headline: "I’m a Full Stack Developer who enjoys creating modern web applications. I work on both the front end and back end, bringing ideas to life through clean code and thoughtful design. I’m passionate about learning new technologies and building products that people actually enjoy using.",
-  email: "hello@example.com",
-  linkedIn: "linkedin.com/in/jd-edusma",
+  email: "deckson.jd@gmail.com",
+  linkedIn: "https://www.linkedin.com/in/jd-edusma",
   github: "https://github.com/Masterhack3r69/",
   resumeUrl: "/resume.pdf",
 };
+export const testimonials: Testimonial[] = [
+  {
+    id: "testimonial-1",
+    name: "Jamuel V.",
+    message: "So glad I found Deckson. They did a great job and were very easy to talk to. Everything looks perfect!",
+  },
+  {
+    id: "testimonial-2",
+    name: "April N.",
+    message: "It was a pleasure working with Deckson. They actually listen to what you want and get it done right.",
+  },
+  {
+    id: "testimonial-3",
+    name: "Barangay's Official",
+    message: "Really happy with the results! Deckson is reliable, friendly, and does high-quality work. 10/10.",
+  },
+];
+
+export const experience: Experience[] = [
+  {
+    id: "exp-1",
+    title: "Full Stack Developer",
+    company: "Freelance",
+    period: "2023 - Present",
+    description: "Delivering custom web and AI solutions for diverse clients. Specializing in high-performance web applications and intelligent system integrations.",
+    skills: ["Next.js", "React", "TypeScript", "Python", "AI Integration", "Full Stack Development"],
+  },
+  {
+    id: "exp-2",
+    title: "IT Support",
+    company: "Department of Public Works and Highways",
+    period: "March 2025 - July 2025",
+    description: "Provided technical assistance for hardware and software issues. Managed network configurations and ensured system reliability for government office operations.",
+    skills: ["Technical Support", "Network Administration", "Hardware Troubleshooting", "System Maintenance"],
+  },
+  {
+    id: "exp-3",
+    title: "Game Developer",
+    company: "Freelance",
+    period: "2024 - 2025",
+    description: "Designed and programmed interactive 2D gameplay mechanics. Developed custom shaders and optimized game performance for various platforms.",
+    skills: ["Godot", "GDScript", "Game Mechanics", "C#", "Level Design"],
+  }
+];
