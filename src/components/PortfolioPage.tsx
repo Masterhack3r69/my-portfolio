@@ -117,6 +117,7 @@ export default function PortfolioPage() {
                  onMouseEnter={handleMouseEnter}
                  onMouseLeave={handleMouseLeave}
               >
+                  <span className="text-sm md:text-base font-mono font-normal normal-case tracking-[0.2em] mb-4 block text-neutral-400">Hi I'm</span>
                   John <br />
                   <span className="outline-text text-transparent stroke-white" style={{ WebkitTextStroke: "2px white" }}>Deckson</span>
               </motion.h1>

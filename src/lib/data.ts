@@ -59,9 +59,9 @@ export const projects: Project[] = [
 ];
 
 export const caseStudy: CaseStudy = {
-  goal: "The goal was to create a seamless, real-time synchronization engine for collaborative editing.",
-  challenge: "Handling concurrent edits and race conditions without sacrificing system performance.",
-  solution: "I implemented an Operational Transformation (OT) algorithm and optimized database queries, reducing sync latency by 45%.",
+  goal: "To create an AI platform that instantly turns educational materials like PDFs and videos into high-quality, randomized quizzes.",
+  challenge: "Reducing the heavy workload of writing and grading questions for teachers, while making sure quizzes are secure and easy for students to access.",
+  solution: "Built an AI system using Next.js and MongoDB to automatically generate questions and grade them. Included anti-cheating features and a simple code-based login for students.",
 };
 
 export const skills: SkillCategory[] = [
