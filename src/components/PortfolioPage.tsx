@@ -23,6 +23,15 @@ export default function PortfolioPage() {
   const [isHovering, setIsHovering] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
+    e.preventDefault();
+    lenisRef.current?.scrollTo(id, {
+      lerp: 0.1,
+      duration: 1.5,
+    });
+  };
 
   // Smooth mouse spring
   const springConfig = { damping: 20, stiffness: 400, mass: 0.5 };
@@ -38,6 +47,7 @@ export default function PortfolioPage() {
       gestureOrientation: "vertical",
       smoothWheel: true,
     });
+    lenisRef.current = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -98,10 +108,10 @@ export default function PortfolioPage() {
       <header className="fixed top-0 left-0 w-full z-40 px-8 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white">
         <div className="font-bold text-lg uppercase tracking-tight">Full Stack Developer</div>
          <nav className="hidden md:flex gap-12 font-medium">
-             <a href="#about" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">About</a>
-             <a href="#work" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Work</a>
-             <a href="#skills" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Skills</a>
-             <a href="#contact" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Contact</a>
+             <a href="#about" onClick={(e) => scrollToSection(e, "#about")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">About</a>
+             <a href="#work" onClick={(e) => scrollToSection(e, "#work")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Work</a>
+             <a href="#skills" onClick={(e) => scrollToSection(e, "#skills")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Skills</a>
+             <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cursor-none hover:text-neutral-400 transition-colors">Contact</a>
          </nav>
       </header>
 
@@ -371,10 +381,57 @@ export default function PortfolioPage() {
       </section>
 
       {/* Footer */}
-      <footer className="h-[50vh] flex items-center justify-center bg-white text-black dot-grid text-black/5" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <h2 className="text-[8vw] font-black uppercase text-center leading-none text-black">
-              Make it <br/> happen
-          </h2>
+      <footer className="bg-white text-black pt-24 pb-12 px-8 md:px-24 dot-grid text-black/5" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24 text-black">
+                  <div className="space-y-8">
+                      <h2 className="text-[12vw] md:text-[6vw] font-black uppercase leading-[0.8] text-black">
+                          Let's <br /> Create
+                      </h2>
+                      <p className="text-xl max-w-sm text-neutral-600 font-light">
+                          Currently based in the Philippines, available for remote collaborations worldwide.
+                      </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-12 md:gap-24 text-black">
+                      <div className="space-y-6 text-black">
+                          <span className="text-xs font-mono uppercase text-neutral-400 tracking-widest leading-none">Navigation</span>
+                          <nav className="flex flex-col gap-4 text-black">
+                              <a href="#home" onClick={(e) => scrollToSection(e, "#home")} className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">Home</a>
+                              <a href="#about" onClick={(e) => scrollToSection(e, "#about")} className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">About</a>
+                              <a href="#work" onClick={(e) => scrollToSection(e, "#work")} className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">Work</a>
+                              <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")} className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">Contact</a>
+                          </nav>
+                      </div>
+                      <div className="space-y-6 text-black">
+                          <span className="text-xs font-mono uppercase text-neutral-400 tracking-widest leading-none">Connect</span>
+                          <nav className="flex flex-col gap-4 text-black">
+                              <a href={contactInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">LinkedIn</a>
+                              <a href={contactInfo.github} target="_blank" rel="noopener noreferrer" className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">GitHub</a>
+                              <a href={`mailto:${contactInfo.email}`} className="text-lg font-bold uppercase hover:text-neutral-400 transition-colors">Email</a>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+
+              <div className="pt-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-8 text-black">
+                   <div className="flex items-center gap-4 text-black">
+                       <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                       <span className="text-xs font-mono uppercase tracking-[0.2em]">Available for projects</span>
+                   </div>
+                   
+                   <span className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400">
+                       &copy; {new Date().getFullYear()} John Deckson — All Rights Reserved
+                   </span>
+
+                   <button 
+                       onClick={(e) => scrollToSection(e as any, "#home")}
+                       className="group flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] hover:text-neutral-400 transition-colors"
+                   >
+                       Back to Top <ArrowUpRight className="group-hover:-rotate-45 transition-transform" size={14} />
+                   </button>
+              </div>
+          </div>
       </footer>
     </div>
   );
