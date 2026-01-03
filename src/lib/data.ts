@@ -108,7 +108,7 @@ export const contactInfo: ContactInfo = {
   email: "deckson.jd@gmail.com",
   linkedIn: "https://www.linkedin.com/in/jd-edusma",
   github: "https://github.com/Masterhack3r69/",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/John Deckson Edusma CV.pdf",
 };
 export const testimonials: Testimonial[] = [
   {
